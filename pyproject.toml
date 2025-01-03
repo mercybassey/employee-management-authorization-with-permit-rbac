@@ -2,7 +2,7 @@
 name = "employee-management"
 version = "0.1.0"
 description = ""
-authors = [""]
+authors = ["example example <example@example.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
