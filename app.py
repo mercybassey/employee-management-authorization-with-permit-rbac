@@ -3,10 +3,11 @@ from urllib.parse import quote_plus, urlencode
 from flask_migrate import Migrate
 import datetime
 from dotenv import load_dotenv
+from functools import wraps
 from authlib.integrations.flask_client import OAuth
 import os
 from models import db, Employee, Department
-import json
+import asyncio
 
 app = Flask(__name__)
 
