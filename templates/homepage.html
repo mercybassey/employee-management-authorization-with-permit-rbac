@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Departments</h2>
+<div class="departments-container">
+    {% for dept in departments %}
+    <div class="department">
+        <a href="{{ url_for('department', department_id=dept.id) }}" id="link">{{ dept.name }}</a>
+        <div class="department-actions">
+            <form method="POST" action="{{ url_for('delete_department', department_id=dept.id) }}" style="display:inline-block;">
+                <button><a href="{{ url_for('update_department', department_id=dept.id) }}" id="#update-link">Update</a> </button>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

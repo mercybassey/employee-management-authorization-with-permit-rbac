@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Employees</h2>
+<div class="employees-container">
+    {% for emp in employees %}
+    <div class="employee-card">
+        <img src="{{ url_for('static', filename='images/' + emp.gender | lower + '.png') }}" alt="Profile Picture">
+        <div class="employee-name-and-role">
+            <a href="{{ url_for('employee', employee_id=emp.id) }}" id="link">{{ emp.name }}</a>
+            <p>{{ emp.role }}</p>
+            <p>{{ emp.position }}</p>
+        </div>
+        <div class="employee-actions">
+            <form method="POST" action="{{ url_for('delete_employee', employee_id=emp.id) }}" style="display:inline-block;">
+                <button><a href="{{ url_for('update_employee', employee_id=emp.id) }}" id="#update-link">Update</a></button>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

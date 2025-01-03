@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Employee Details</h1>
+<div class="employee-details-container">
+    <div class="profile-photo">
+        <img src="{{ url_for('static', filename='images/' + employee.gender | lower + '.png') }}" alt="Profile Picture">
+    </div>
+    <div class="employee-details">
+        <h2>{{ employee.name }}</h2>
+        <p><strong>Role:</strong> {{ employee.role }}</p>
+        <p><strong>Location:</strong> {{ employee.location }}</p>
+        <p><strong>Start Year:</strong> {{ employee.start_year }}</p>
+        <p><strong>Hobbies:</strong> {{ employee.hobbies }}</p>
+        <p class="lorem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Suspendisse ultrices risus vitae lacus viverra, a suscipit enim luctus. 
+            Aliquam erat volutpat. Etiam ut justo sed urna ultrices sollicitudin.
+        </p>
+        <div class="employee-actions">
+            <form method="POST" action="{{ url_for('delete_employee', employee_id=employee.id) }}" style="display:inline-block;">
+                <button><a href="{{ url_for('update_employee', employee_id=employee.id) }}" id="update-link">Update</a></button>
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

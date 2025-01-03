@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Update Employee</h1>
+<form action="{{ url_for('update_employee', employee_id=employee.id) }}" method="POST" class="update-employee-form">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ employee.name }}" required><br>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="Male" {% if employee.gender == 'Male' %}selected{% endif %}>Male</option>
+            <option value="Female" {% if employee.gender == 'Female' %}selected{% endif %}>Female</option>
+        </select><br>
+
+        <label for="role">Role:</label>
+        <input type="text" id="role" name="role" value="{{ employee.role }}" required><br>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" value="{{ employee.location }}" required><br>
+
+        <label for="position">Position:</label>
+        <input type="text" id="position" name="position" value="{{ employee.position }}" required><br>
+
+
+        <label for="start_year">Start Year:</label>
+        <select id="start_year" name="start_year" required>
+            {% for year in range(2000, current_year + 1) %}
+                <option value="{{ year }}" {% if employee.start_year == year %}selected{% endif %}>{{ year }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="hobbies">Hobbies:</label>
+        <input type="text" id="hobbies" name="hobbies" value="{{ employee.hobbies }}" required><br>
+
+        <button type="submit">Update Employee</button>
+    </div>
+</form>
+{% endblock %}

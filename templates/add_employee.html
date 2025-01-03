@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Add New Employee</h1>
+    <form action="{{ url_for('add_employee') }}" method="POST" class="add-employee-form">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select><br>
+
+
+            <label for="position">Position:</label>
+            <input type="text" id="position" name="position" required><br>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required><br>
+
+            <!-- Dynamic Dropdown for Start Year -->
+            <label for="start_year">Start Year:</label>
+            <select id="start_year" name="start_year" required>
+                {% for year in range(2000, current_year + 1) %}
+                    <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+            </select><br>
+
+            <label for="hobbies">Hobbies:</label>
+            <input type="text" id="hobbies" name="hobbies"><br>
+
+            <!-- Updated Department to Dropdown -->
+            <label for="department">Department:</label>
+            <select id="department" name="department_id" required>
+                {% for department in departments %}
+                    <option value="{{ department.id }}">{{ department.name }}</option>
+                {% else %}
+                    <option value="">No departments available</option>
+                {% endfor %}
+            </select><br>
+
+            <button type="submit">Add Employee</button>
+        </div>
+    </form>
+</body>
+</html>
+{% endblock %}
